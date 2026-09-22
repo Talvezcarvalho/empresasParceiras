@@ -21,7 +21,7 @@ function MediaPanel({ partner }) {
     <div className="relative w-full h-56 md:h-auto md:w-2/5 shrink-0 bg-[#0b0f18] flex items-center justify-center overflow-hidden">
       {hasImage ? (
         <img
-          src={`/partners/${partner.id}.jpg`}
+          src={"public/partners/" + partner.id + ".jpg"}
           alt={partner.name}
           onError={() => setError(true)}
           className="w-full h-full object-contain"

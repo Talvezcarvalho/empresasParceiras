@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   Coffee,
   Scissors,
@@ -12,55 +13,47 @@ import {
   ArrowRight,
 } from 'lucide-react';
 
-// -----------------------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------------------
+// ---------------------------------------------------------
+// Ícones por categoria
+// ---------------------------------------------------------
 
-// Mapeia categorias conhecidas para um ícone. Fora da lista, cai no
-// genérico (Building2) em vez de quebrar o card.
 const CATEGORY_ICONS = {
-  'Alimentação': Utensils,
-  'Beleza': Scissors,
-  'Tecnologia': Laptop,
-  'Saúde': Heart,
-  'Educação': BookOpen,
+  Alimentação: Utensils,
+  Beleza: Scissors,
+  Tecnologia: Laptop,
+  Saúde: Heart,
+  'Saúde e Educação': Heart,
+  Educação: BookOpen,
   'Bem-estar': Activity,
-  'Cafeteria': Coffee,
-  'Ótica': Glasses,
+  Cafeteria: Coffee,
+  Ótica: Glasses,
+  Farmácia: Heart,
 };
 
 function CategoryIcon({ category, className }) {
   const Icon = CATEGORY_ICONS[category] || Building2;
+
   return <Icon className={className} />;
 }
 
-// Hash simples e estável — determina o layout de cada card a partir do
-// próprio id, então o mesmo parceiro sempre cai na mesma variação
-// (não sorteia de novo a cada re-render/filtro).
-function hashString(str) {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = (h << 5) - h + str.charCodeAt(i);
-    h |= 0;
-  }
-  return Math.abs(h);
-}
+// ---------------------------------------------------------
+// Extrai percentual do benefício
+// Ex: "10% de desconto..." -> "10%"
+// ---------------------------------------------------------
 
-function getVariant(id) {
-  return hashString(id) % 3; // 0 = faixa lateral, 1 = canto, 2 = pôster
-}
-
-// Extrai um percentual do texto de benefício ("10% de desconto..." -> "10%")
-// pra virar elemento gráfico grande em vez de só texto corrido.
 function extractPercent(benefit) {
   if (!benefit) return null;
+
   const match = benefit.match(/\d{1,3}%/);
+
   return match ? match[0] : null;
 }
 
-// Bloco de logo: convenção /partners/{id}.jpg. Sem o arquivo, cai num
-// painel com fundo claro + ícone da categoria — nunca fica "vazio".
-function LogoBlock({ partner, className = '' }) {
+// ---------------------------------------------------------
+// Logo
+// ---------------------------------------------------------
+
+function LogoBlock({ partner }) {
   const [error, setError] = useState(false);
 
   if (!error) {
@@ -69,244 +62,462 @@ function LogoBlock({ partner, className = '' }) {
         src={`/partners/${partner.id}.jpg`}
         alt={partner.name}
         onError={() => setError(true)}
-        className={`object-cover ${className}`}
+        className="
+          w-full
+          h-full
+          object-contain
+          p-3
+          sm:p-4
+          transition-transform
+          duration-500
+          group-hover:scale-[1.04]
+        "
       />
     );
   }
 
   return (
-    <div className={`flex items-center justify-center bg-[#f4f1ea] ${className}`}>
-      <CategoryIcon category={partner.category} className="h-7 w-7 text-[#131a29]" />
+    <div
+      className="
+        w-full
+        h-full
+        flex
+        items-center
+        justify-center
+        bg-[#f4f1ea]
+      "
+    >
+      <CategoryIcon
+        category={partner.category}
+        className="h-8 w-8 text-[#131a29]"
+      />
     </div>
   );
 }
 
-function CategoryLabel({ children, className = '' }) {
+// ---------------------------------------------------------
+// Categoria
+// ---------------------------------------------------------
+
+function CategoryLabel({ children }) {
   return (
-    <span className={`block text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 ${className}`}>
+    <span
+      className="
+        block
+        text-[10px]
+        sm:text-[11px]
+        font-bold
+        tracking-[0.22em]
+        uppercase
+        text-slate-500
+      "
+    >
       {children}
     </span>
   );
 }
 
-// -----------------------------------------------------------------------
-// Variante 0 — Faixa lateral: logo ocupa a coluna esquerda inteira,
-// uma faixa sky-600 marca a borda, o nome ganha um sublinhado que
-// "corre" no hover.
-// -----------------------------------------------------------------------
-function CardStripe({ partner, onSelect }) {
+// ---------------------------------------------------------
+// PartnerCard
+// ---------------------------------------------------------
+
+export const PartnerCard = ({ partner, onSelect }) => {
   const percent = extractPercent(partner.benefit);
-  const restBenefit = percent ? partner.benefit.replace(percent, '').trim() : partner.benefit;
+
+  const benefitText = percent
+    ? partner.benefit
+        ?.replace(percent, '')
+        .trim()
+        .replace(/^de\s+/i, '')
+    : partner.benefit;
+
+  const hasBenefit = Boolean(partner.benefit);
 
   return (
-    <div
+    <article
       id={`partner-card-${partner.id}`}
       onClick={() => onSelect(partner)}
-      className="group relative flex rounded-2xl bg-[#131a29] border border-[#1e273b] overflow-hidden shadow-lg hover:shadow-2xl hover:border-[#2f3e5c] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-    >
-      {/* faixa sky-600 — o "gesto" azul do card, não uma borda fina */}
-      <div className="absolute left-0 top-0 bottom-0 w-[6px] bg-sky-600 transition-all duration-300 group-hover:w-[10px] z-10" />
+      className="
+        group
+        relative
+        flex
+        min-h-[260px]
+        rounded-2xl
+        overflow-hidden
 
-      {/* logo lateral grande, 90–110px de largura */}
-      <div className="relative w-[92px] sm:w-[108px] shrink-0 overflow-hidden ml-[6px] group-hover:ml-[10px] transition-all duration-300">
-        <LogoBlock
-          partner={partner}
-          className="w-full h-full transition-transform duration-300 group-hover:scale-105"
+        bg-[#131a29]
+        border
+        border-[#1e273b]
+
+        cursor-pointer
+
+        transition-all
+        duration-500
+
+        hover:border-[#2d405f]
+        hover:-translate-y-1
+        hover:shadow-[0_24px_60px_rgba(0,0,0,0.28)]
+      "
+    >
+      {/* Linha azul de identidade */}
+      <div
+        className="
+          absolute
+          left-0
+          top-0
+          bottom-0
+          w-[5px]
+          bg-sky-600
+          z-20
+
+          transition-all
+          duration-500
+
+          group-hover:w-[8px]
+        "
+      />
+
+      {/* ---------------------------------------------------
+          Área da logo
+      ---------------------------------------------------- */}
+      <div
+        className="
+          relative
+          w-[120px]
+          sm:w-[142px]
+          lg:w-[150px]
+          shrink-0
+
+          ml-[5px]
+          bg-[#f4f1ea]
+
+          overflow-hidden
+
+          transition-all
+          duration-500
+
+          group-hover:ml-[8px]
+        "
+      >
+        <LogoBlock partner={partner} />
+
+        {/* detalhe gráfico sutil */}
+        <div
+          className="
+            absolute
+            right-0
+            bottom-0
+            w-8
+            h-[3px]
+            bg-sky-600
+
+            transition-all
+            duration-500
+
+            group-hover:w-14
+          "
         />
       </div>
 
-      <div className="flex-1 min-w-0 p-5 sm:p-6 flex flex-col justify-between">
-        <div>
-          <CategoryLabel className="mb-2">{partner.category}</CategoryLabel>
+      {/* ---------------------------------------------------
+          Conteúdo
+      ---------------------------------------------------- */}
+      <div
+        className="
+          flex-1
+          min-w-0
 
-          <h3 className="relative inline-block text-2xl sm:text-[26px] font-black tracking-tight text-white leading-[1.05] mb-3">
-            {partner.name}
-            <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-sky-600 transition-all duration-500 group-hover:w-full" />
-          </h3>
+          px-5
+          py-5
 
-          {partner.benefit && (
-            percent ? (
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl sm:text-4xl font-black text-sky-600 leading-none">
-                  {percent}
-                </span>
-                {restBenefit && (
-                  <span className="text-xs sm:text-sm text-slate-300 leading-snug">
-                    {restBenefit}
-                  </span>
-                )}
-              </div>
-            ) : (
-              <p className="text-[15px] font-semibold text-sky-100 leading-snug">
-                {partner.benefit}
-              </p>
-            )
-          )}
-        </div>
+          sm:px-7
+          sm:py-6
 
-        <div className="flex items-center justify-end pt-4">
-          <button
-            id={`ver-detalhes-btn-${partner.id}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect(partner);
-            }}
-            className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-slate-400 group-hover:text-sky-600 group-hover:translate-x-1 transition-all cursor-pointer"
-          >
-            Ver detalhes
-            <ArrowRight className="h-3.5 w-3.5" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
+          flex
+          flex-col
+        "
+      >
+        {/* categoria */}
+        <CategoryLabel>
+          {partner.category}
+        </CategoryLabel>
 
-// -----------------------------------------------------------------------
-// Variante 1 — Logo no canto: a logo "invade" o canto superior direito,
-// o rodapé vira um bloco sólido sky-600 (não uma caixa com borda).
-// -----------------------------------------------------------------------
-function CardCorner({ partner, onSelect }) {
-  const percent = extractPercent(partner.benefit);
+        {/* nome */}
+        <h3
+          className="
+            mt-3
 
-  return (
-    <div
-      id={`partner-card-${partner.id}`}
-      onClick={() => onSelect(partner)}
-      className="group relative flex flex-col rounded-2xl bg-[#131a29] border border-[#1e273b] overflow-hidden shadow-lg hover:shadow-2xl hover:border-[#2f3e5c] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-    >
-      <div className="p-6 sm:p-7 pb-5 flex-1">
-        <div className="flex items-start justify-between gap-4 mb-5">
-          <CategoryLabel className="mt-2">{partner.category}</CategoryLabel>
+            text-[22px]
+            sm:text-[26px]
 
-          {/* logo grande, deslocada pro canto — quase saindo do card */}
-          <LogoBlock
-            partner={partner}
-            className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border-4 border-[#131a29] shadow-xl -mt-2 -mr-2 sm:-mr-3 transition-transform duration-300 group-hover:-translate-y-2 group-hover:translate-x-2 group-hover:rotate-2"
-          />
-        </div>
+            font-black
+            tracking-[-0.035em]
+            leading-[1.05]
 
-        <h3 className="text-2xl sm:text-[28px] font-black tracking-tight text-white leading-[1.02] max-w-[78%]">
+            text-white
+
+            max-w-[95%]
+
+            transition-colors
+            duration-300
+
+            group-hover:text-sky-50
+          "
+        >
           {partner.name}
         </h3>
-      </div>
 
-      {/* bloco sólido sky-600 no rodapé — a assinatura azul do card */}
-      <button
-        id={`ver-detalhes-btn-${partner.id}`}
-        onClick={(e) => {
-          e.stopPropagation();
-          onSelect(partner);
-        }}
-        className="relative bg-sky-600 group-hover:bg-sky-500 px-6 sm:px-7 py-4 group-hover:py-[18px] flex items-center justify-between gap-3 transition-all duration-300 text-left cursor-pointer"
-      >
-        {partner.benefit ? (
-          percent ? (
-            <span className="text-slate-950 font-black text-lg sm:text-xl leading-tight">
-              {percent} <span className="font-semibold text-xs sm:text-sm opacity-80">de desconto</span>
-            </span>
+        {/* pequeno traço editorial */}
+        <div
+          className="
+            mt-4
+            h-[2px]
+            w-8
+
+            bg-sky-600
+
+            transition-all
+            duration-500
+
+            group-hover:w-16
+          "
+        />
+
+        {/* -------------------------------------------------
+            CONTEÚDO PRINCIPAL
+
+            benefício se existir
+            descrição se não existir
+        -------------------------------------------------- */}
+        <div className="mt-5 flex-1">
+          {hasBenefit ? (
+            <>
+              {percent ? (
+                <div className="flex items-start gap-3">
+                  {/* percentual grande */}
+                  <span
+                    className="
+                      shrink-0
+
+                      text-4xl
+                      sm:text-5xl
+
+                      font-black
+                      tracking-[-0.06em]
+                      leading-none
+
+                      text-sky-600
+
+                      transition-transform
+                      duration-500
+
+                      group-hover:scale-[1.04]
+                    "
+                  >
+                    {percent}
+                  </span>
+
+                  {/* complemento */}
+                  {benefitText && (
+                    <p
+                      className="
+                        pt-1
+
+                        text-sm
+                        sm:text-[15px]
+
+                        leading-relaxed
+                        text-slate-300
+
+                        max-w-md
+                      "
+                      style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      {benefitText}
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  <span
+                    className="
+                      block
+                      mb-2
+
+                      text-[9px]
+                      font-black
+                      tracking-[0.22em]
+                      uppercase
+
+                      text-sky-600
+                    "
+                  >
+                    Benefício
+                  </span>
+
+                  <p
+                    className="
+                      text-[15px]
+                      sm:text-base
+
+                      font-medium
+                      leading-relaxed
+
+                      text-slate-200
+
+                      max-w-xl
+                    "
+                    style={{
+                      display: '-webkit-box',
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    {partner.benefit}
+                  </p>
+                </div>
+              )}
+            </>
           ) : (
-            <span
-              className="text-slate-950 text-xs sm:text-sm font-bold leading-snug"
-              style={{
-                display: '-webkit-box',
-                WebkitLineClamp: 1,
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden',
-              }}
-            >
-              {partner.benefit}
-            </span>
-          )
-        ) : (
-          <span className="text-slate-950 text-xs font-black uppercase tracking-wider">
-            Ver detalhes
-          </span>
-        )}
-        <ArrowRight className="h-4 w-4 text-slate-950 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
-      </button>
-    </div>
-  );
-}
+            <div>
+              <span
+                className="
+                  block
+                  mb-2
 
-// -----------------------------------------------------------------------
-// Variante 2 — Pôster: metade inferior tomada por um bloco de gradiente
-// sky-600 com o benefício como manchete grande.
-// -----------------------------------------------------------------------
-function CardPoster({ partner, onSelect }) {
-  const percent = extractPercent(partner.benefit);
-  const restBenefit = percent ? partner.benefit.replace(percent, '').trim() : partner.benefit;
+                  text-[9px]
+                  font-black
+                  tracking-[0.22em]
+                  uppercase
 
-  return (
-    <div
-      id={`partner-card-${partner.id}`}
-      onClick={() => onSelect(partner)}
-      className="group relative flex flex-col rounded-2xl bg-[#131a29] border border-[#1e273b] overflow-hidden shadow-lg hover:shadow-2xl hover:border-[#2f3e5c] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-    >
-      <div className="p-6 sm:p-7">
-        <div className="flex items-center gap-3.5">
-          <LogoBlock
-            partner={partner}
-            className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl shrink-0 transition-transform duration-300 group-hover:scale-105"
+                  text-sky-600
+                "
+              >
+                Sobre
+              </span>
+
+              <p
+                className="
+                  text-sm
+                  sm:text-[15px]
+
+                  leading-relaxed
+                  text-slate-300
+
+                  max-w-xl
+                "
+                style={{
+                  display: '-webkit-box',
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden',
+                }}
+              >
+                {partner.description ||
+                  'Conheça mais sobre esta empresa parceira.'}
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* -------------------------------------------------
+            Rodapé
+        -------------------------------------------------- */}
+        <div
+          className="
+            mt-6
+            pt-4
+
+            flex
+            items-center
+            gap-5
+          "
+        >
+          {/* linha ocupa o espaço livre */}
+          <div
+            className="
+              h-px
+              flex-1
+              bg-[#26324a]
+
+              transition-colors
+              duration-500
+
+              group-hover:bg-sky-600/50
+            "
           />
-          <div className="min-w-0">
-            <CategoryLabel className="mb-1">{partner.category}</CategoryLabel>
-            <h3 className="text-lg sm:text-xl font-black tracking-tight text-white leading-tight truncate">
-              {partner.name}
-            </h3>
-          </div>
+
+          <button
+            id={`ver-detalhes-btn-${partner.id}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect(partner);
+            }}
+            className="
+              inline-flex
+              items-center
+              gap-2
+
+              shrink-0
+
+              text-[10px]
+              sm:text-[11px]
+
+              font-black
+              uppercase
+              tracking-[0.14em]
+
+              text-slate-400
+
+              transition-all
+              duration-300
+
+              group-hover:text-sky-600
+
+              cursor-pointer
+            "
+          >
+            Ver detalhes
+
+            <ArrowRight
+              className="
+                h-3.5
+                w-3.5
+
+                transition-transform
+                duration-300
+
+                group-hover:translate-x-1.5
+              "
+            />
+          </button>
         </div>
       </div>
 
-      {partner.benefit ? (
-        <div className="relative mt-auto bg-gradient-to-br from-sky-600 to-sky-800 group-hover:from-sky-500 group-hover:to-sky-700 px-6 sm:px-7 pt-6 pb-14 transition-all duration-300">
-          {percent && (
-            <span className="block text-4xl sm:text-5xl font-black text-white leading-none mb-1 origin-left transition-transform duration-300 group-hover:scale-105">
-              {percent}
-            </span>
-          )}
-          <p className="text-sm sm:text-[15px] font-semibold text-sky-50 leading-snug">
-            {restBenefit}
-          </p>
+      {/* detalhe de canto */}
+      <div
+        className="
+          absolute
+          top-0
+          right-0
 
-          <button
-            id={`ver-detalhes-btn-${partner.id}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect(partner);
-            }}
-            className="absolute bottom-4 right-5 sm:right-6 inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all cursor-pointer"
-          >
-            Detalhes
-            <ArrowRight className="h-3 w-3" />
-          </button>
-        </div>
-      ) : (
-        <div className="mt-auto px-6 sm:px-7 py-5 border-t border-[#1e273b] flex items-center justify-end">
-          <button
-            id={`ver-detalhes-btn-${partner.id}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect(partner);
-            }}
-            className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-slate-400 group-hover:text-sky-600 group-hover:translate-x-1 transition-all cursor-pointer"
-          >
-            Ver detalhes
-            <ArrowRight className="h-3.5 w-3.5" />
-          </button>
-        </div>
-      )}
-    </div>
+          w-0
+          h-[2px]
+
+          bg-sky-600
+
+          transition-all
+          duration-700
+
+          group-hover:w-24
+        "
+      />
+    </article>
   );
-}
-
-// -----------------------------------------------------------------------
-// Dispatcher
-// -----------------------------------------------------------------------
-export const PartnerCard = ({ partner, onSelect }) => {
-  const variant = getVariant(partner.id);
-
-  if (variant === 0) return <CardStripe partner={partner} onSelect={onSelect} />;
-  if (variant === 1) return <CardCorner partner={partner} onSelect={onSelect} />;
-  return <CardPoster partner={partner} onSelect={onSelect} />;
 };

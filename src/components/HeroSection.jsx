@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import catFundo from '/public/catfundo.png';
 import {
   Search,
   ShieldCheck,
@@ -12,7 +13,7 @@ export const HeroSection = ({
   searchQuery,
   onSearchChange,
   totalBusinesses = 0,
-  backgroundUrl = "public/catfundo.png",
+  backgroundUrl = catFundo,
 }) => {
   const [ready, setReady] = useState(false);
 
