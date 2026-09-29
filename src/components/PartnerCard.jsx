@@ -37,20 +37,10 @@ function CategoryIcon({ category, className }) {
 }
 
 // ---------------------------------------------------------
-// Extrai percentual do benefício
-// Ex: "10% de desconto..." -> "10%"
-// ---------------------------------------------------------
-
-function extractPercent(benefit) {
-  if (!benefit) return null;
-
-  const match = benefit.match(/\d{1,3}%/);
-
-  return match ? match[0] : null;
-}
-
-// ---------------------------------------------------------
 // Logo
+// O mat cream (#f4f1ea) é proposital e fica igual nos dois temas —
+// funciona como uma "passe-partout" de foto, não como superfície do
+// app, então não precisa virar dark:.
 // ---------------------------------------------------------
 
 function LogoBlock({ partner }) {
@@ -97,6 +87,8 @@ function LogoBlock({ partner }) {
 
 // ---------------------------------------------------------
 // Categoria
+// slate-500 já tem contraste razoável em fundo claro e escuro, então
+// fica sem dark: mesmo — não é todo tom de cinza que precisa de par.
 // ---------------------------------------------------------
 
 function CategoryLabel({ children }) {
@@ -122,17 +114,6 @@ function CategoryLabel({ children }) {
 // ---------------------------------------------------------
 
 export const PartnerCard = ({ partner, onSelect }) => {
-  const percent = extractPercent(partner.benefit);
-
-  const benefitText = percent
-    ? partner.benefit
-        ?.replace(percent, '')
-        .trim()
-        .replace(/^de\s+/i, '')
-    : partner.benefit;
-
-  const hasBenefit = Boolean(partner.benefit);
-
   return (
     <article
       id={`partner-card-${partner.id}`}
@@ -145,21 +126,25 @@ export const PartnerCard = ({ partner, onSelect }) => {
         rounded-2xl
         overflow-hidden
 
-        bg-[#131a29]
+        bg-white
+        dark:bg-[#131a29]
         border
-        border-[#1e273b]
+        border-[#d6e0ec]
+        dark:border-[#1e273b]
 
         cursor-pointer
 
         transition-all
         duration-500
 
-        hover:border-[#2d405f]
+        hover:border-[#b9c8dc]
+        dark:hover:border-[#2d405f]
         hover:-translate-y-1
-        hover:shadow-[0_24px_60px_rgba(0,0,0,0.28)]
+        hover:shadow-[0_24px_60px_rgba(15,35,65,0.12)]
+        dark:hover:shadow-[0_24px_60px_rgba(0,0,0,0.28)]
       "
     >
-      {/* Linha azul de identidade */}
+      {/* Linha azul de identidade — assinatura, igual nos dois temas */}
       <div
         className="
           absolute
@@ -254,14 +239,16 @@ export const PartnerCard = ({ partner, onSelect }) => {
             tracking-[-0.035em]
             leading-[1.05]
 
-            text-white
+            text-[#172033]
+            dark:text-white
 
             max-w-[95%]
 
             transition-colors
             duration-300
 
-            group-hover:text-sky-50
+            group-hover:text-sky-900
+            dark:group-hover:text-sky-50
           "
         >
           {partner.name}
@@ -286,144 +273,47 @@ export const PartnerCard = ({ partner, onSelect }) => {
         {/* -------------------------------------------------
             CONTEÚDO PRINCIPAL
 
-            benefício se existir
-            descrição se não existir
+            Sempre a descrição — a promoção fica reservada pra
+            modal, ao clicar em "Ver detalhes".
         -------------------------------------------------- */}
         <div className="mt-5 flex-1">
-          {hasBenefit ? (
-            <>
-              {percent ? (
-                <div className="flex items-start gap-3">
-                  {/* percentual grande */}
-                  <span
-                    className="
-                      shrink-0
+          <span
+            className="
+              block
+              mb-2
 
-                      text-4xl
-                      sm:text-5xl
+              text-[9px]
+              font-black
+              tracking-[0.22em]
+              uppercase
 
-                      font-black
-                      tracking-[-0.06em]
-                      leading-none
+              text-sky-600
+            "
+          >
+            Sobre
+          </span>
 
-                      text-sky-600
+          <p
+            className="
+              text-sm
+              sm:text-[15px]
 
-                      transition-transform
-                      duration-500
+              leading-relaxed
+              text-slate-600
+              dark:text-slate-300
 
-                      group-hover:scale-[1.04]
-                    "
-                  >
-                    {percent}
-                  </span>
-
-                  {/* complemento */}
-                  {benefitText && (
-                    <p
-                      className="
-                        pt-1
-
-                        text-sm
-                        sm:text-[15px]
-
-                        leading-relaxed
-                        text-slate-300
-
-                        max-w-md
-                      "
-                      style={{
-                        display: '-webkit-box',
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {benefitText}
-                    </p>
-                  )}
-                </div>
-              ) : (
-                <div>
-                  <span
-                    className="
-                      block
-                      mb-2
-
-                      text-[9px]
-                      font-black
-                      tracking-[0.22em]
-                      uppercase
-
-                      text-sky-600
-                    "
-                  >
-                    Benefício
-                  </span>
-
-                  <p
-                    className="
-                      text-[15px]
-                      sm:text-base
-
-                      font-medium
-                      leading-relaxed
-
-                      text-slate-200
-
-                      max-w-xl
-                    "
-                    style={{
-                      display: '-webkit-box',
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    {partner.benefit}
-                  </p>
-                </div>
-              )}
-            </>
-          ) : (
-            <div>
-              <span
-                className="
-                  block
-                  mb-2
-
-                  text-[9px]
-                  font-black
-                  tracking-[0.22em]
-                  uppercase
-
-                  text-sky-600
-                "
-              >
-                Sobre
-              </span>
-
-              <p
-                className="
-                  text-sm
-                  sm:text-[15px]
-
-                  leading-relaxed
-                  text-slate-300
-
-                  max-w-xl
-                "
-                style={{
-                  display: '-webkit-box',
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden',
-                }}
-              >
-                {partner.description ||
-                  'Conheça mais sobre esta empresa parceira.'}
-              </p>
-            </div>
-          )}
+              max-w-xl
+            "
+            style={{
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+          >
+            {partner.description ||
+              'Conheça mais sobre esta empresa parceira.'}
+          </p>
         </div>
 
         {/* -------------------------------------------------
@@ -444,7 +334,8 @@ export const PartnerCard = ({ partner, onSelect }) => {
             className="
               h-px
               flex-1
-              bg-[#26324a]
+              bg-[#d6e0ec]
+              dark:bg-[#26324a]
 
               transition-colors
               duration-500
@@ -473,7 +364,8 @@ export const PartnerCard = ({ partner, onSelect }) => {
               uppercase
               tracking-[0.14em]
 
-              text-slate-400
+              text-slate-500
+              dark:text-slate-400
 
               transition-all
               duration-300
@@ -483,7 +375,7 @@ export const PartnerCard = ({ partner, onSelect }) => {
               cursor-pointer
             "
           >
-            Ver detalhes
+            Ver detalhes e promoções
 
             <ArrowRight
               className="

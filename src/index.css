@@ -1,10 +1,79 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+/* Ativa o dark mode pela classe .dark (manual), em vez do padrão
+   prefers-color-scheme. Assim toda classe dark:algo no projeto só se
+   aplica quando .dark estiver presente num ancestral — no nosso caso,
+   o próprio .app-shell no App.jsx, controlado pelo toggle do Navbar. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-	--font-sans: "Geist", sans-serif;
+    --font-sans: "Geist", sans-serif;
 }
 
 body {
-	font-family: "Geist", sans-serif;
+    font-family: "Geist", sans-serif;
 }
+
+/* ------------------------------------------------------------------
+   PONTE TEMPORÁRIA — remover assim que Navbar, Footer,
+   CategoryFilterBar e RegisterModal forem convertidos pra dark: de
+   verdade (não tenho o código-fonte deles ainda pra fazer isso agora).
+
+   Esses componentes usam hex fixo, sem variante dark:, então por
+   padrão eles SEMPRE renderizam escuro, mesmo no modo claro. Este
+   bloco corrige isso à força, igual o hack antigo fazia — só que agora
+   escopado corretamente pra ":not(.dark)" (modo claro = ausência da
+   classe .dark no .app-shell), que é a polaridade certa do novo
+   sistema. App.jsx, PartnerCard.jsx e PartnerDetailModal.jsx JÁ usam
+   dark: de verdade e não dependem mais deste bloco.
+------------------------------------------------------------------ */
+.app-shell:not(.dark) [class~="bg-[#111726]"],
+.app-shell:not(.dark) [class~="bg-[#141c2c]"],
+.app-shell:not(.dark) [class~="bg-[#0c1018]"],
+.app-shell:not(.dark) [class~="bg-[#0d131f]/90"],
+.app-shell:not(.dark) [class~="bg-[#0c121e]"],
+.app-shell:not(.dark) [class~="bg-[#0a0f19]"] {
+    background-color: #ffffff;
+}
+
+.app-shell:not(.dark) [class~="bg-[#162033]"],
+.app-shell:not(.dark) [class~="bg-[#192236]"] {
+    background-color: #eef3f9;
+}
+
+.app-shell:not(.dark) [class~="border-[#1e2638]"],
+.app-shell:not(.dark) [class~="border-[#1c2436]"],
+.app-shell:not(.dark) [class~="border-[#232f48]"],
+.app-shell:not(.dark) [class~="border-[#1a2335]"] {
+    border-color: #d6e0ec;
+}
+
+.app-shell:not(.dark) [class~="text-white"]:not(.hero-section):not(.hero-section *),
+.app-shell:not(.dark) [class~="text-slate-100"]:not(.hero-section):not(.hero-section *),
+.app-shell:not(.dark) [class~="text-slate-200"]:not(.hero-section):not(.hero-section *),
+.app-shell:not(.dark) [class~="text-slate-300"]:not(.hero-section):not(.hero-section *) {
+    color: #172033;
+}
+
+.app-shell:not(.dark) [class~="text-slate-400"],
+.app-shell:not(.dark) [class~="text-slate-500"] {
+    color: #526176;
+}
+
+.app-shell:not(.dark) [class~="hover:bg-slate-800"]:hover,
+.app-shell:not(.dark) [class~="hover:bg-slate-800/60"]:hover,
+.app-shell:not(.dark) [class~="hover:bg-slate-700"]:hover {
+    background-color: #eef3f9;
+}
+
+.app-shell:not(.dark) input:not(.hero-section input),
+.app-shell:not(.dark) textarea:not(.hero-section textarea),
+.app-shell:not(.dark) select:not(.hero-section select) {
+    color: #172033;
+}
+
+/* A HeroSection NÃO precisa de nada aqui: ela usa cor fixa (bg-slate-950,
+   texto branco) sem nenhuma classe dark:, então continua sempre escura
+   nos dois temas — que é o efeito visual que o hack antigo tentava forçar
+   manualmente com ".theme-light .hero-section". Agora é automático. */

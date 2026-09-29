@@ -1,10 +1,9 @@
 
 export const INITIAL_PARTNERS = [
-  
   {
     "id": "faz-de-conta-clinica",
     "name": "Faz de Conta Clínica - Centro de Desenvolvimento",
-    "category": "Saúde e Educação",
+    "category": "Saúde e Bem-estar",
     "description": "Psicologia, fonoaudiologia, psicopedagogia, reforço escolar, avaliação neuropsicológica, Day Care especializado e atendimento especializado TEA.",
     "benefit": "Desconto especial para alunos do CAT.",
     "phone": "(45) 99985-6762",
@@ -18,7 +17,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "baloes-e-alegria",
     "name": "Balões & Alegria",
-    "category": "Festas e Eventos",
+    "category": "Eventos e Comunicação",
     "description": null,
     "benefit": "10% de desconto.",
     "phone": "(45) 99151-2187",
@@ -32,7 +31,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "israel-motorista-particular",
     "name": "Israel Motorista Particular",
-    "category": "Transporte",
+    "category": "Mobilidade e Automotivo",
     "description": "Motorista particular, Uber e 99, com atendimento também para viagens particulares.",
     "benefit": null,
     "phone": "(45) 99148-5975",
@@ -46,7 +45,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "farmacia-boa-esperanca",
     "name": "Farmácia Boa Esperança",
-    "category": "Farmácia",
+    "category": "Saúde e Bem-estar",
     "description": null,
     "benefit": "Até 50% de desconto em medicamentos e produtos de perfumaria para funcionários, pais e alunos da Rede Adventista de Toledo.",
     "phone": null,
@@ -60,7 +59,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "tk-flooring",
     "name": "TK Flooring",
-    "category": "Casa e Construção",
+    "category": "Casa e Imóveis",
     "description": "Serviços relacionados à instalação de pisos.",
     "benefit": "10% OFF na instalação do piso para famílias adventistas.",
     "phone": null,
@@ -74,7 +73,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "parana-rural-solucoes-agricolas",
     "name": "Paraná Rural Soluções Agrícolas",
-    "category": "Agronegócio",
+    "category": "Serviços Profissionais",
     "description": "Consultoria especializada, tecnologia em pulverização e nutrição avançada de plantas para elevar produtividade, eficiência e qualidade das operações no campo.",
     "benefit": "8% de desconto.",
     "phone": null,
@@ -102,7 +101,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "iara-staffen-makeup",
     "name": "Iara Stäffen Make Up",
-    "category": "Beleza",
+    "category": "Saúde e Bem-estar",
     "description": "Serviços de maquiagem.",
     "benefit": "15% de desconto na maquiagem agendada para o ano de 2026.",
     "phone": "(45) 99977-7258",
@@ -116,7 +115,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "grow-up-toledo",
     "name": "Grow Up Toledo",
-    "category": "Moda",
+    "category": "Moda, Beleza e Presentes",
     "description": "Loja de roupa infantil localizada na Villa Nattu.",
     "benefit": "15% de desconto, não cumulativo com outras promoções.",
     "phone": null,
@@ -130,7 +129,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "ledesma-advocacia",
     "name": "Ledesma Advocacia",
-    "category": "Jurídico",
+    "category": "Serviços Profissionais",
     "description": "Escritório de advocacia em Toledo - PR e Iguatemi - MS, com atuação em Direito Penal, Previdenciário e Trabalhista.",
     "benefit": null,
     "phone": "Dr. Erminio: (67) 99638-1323 | Dr. Gustavo: (67) 99921-3677 | Dra. Amanda: (67) 99312-5666",
@@ -144,7 +143,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "beto-guincho",
     "name": "Beto Guincho",
-    "category": "Automotivo",
+    "category": "Mobilidade e Automotivo",
     "description": "Atendimento 24 horas com reboque, socorro em acidentes, troca de pneu e recarga de bateria.",
     "benefit": "Para pais dos alunos da escola, socorros dentro da cidade de Toledo por R$ 100,00.",
     "phone": null,
@@ -172,7 +171,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "beijinho-doce-leticia",
     "name": "Beijinho Doce Letícia",
-    "category": "Doces e Eventos",
+    "category": "Alimentação",
     "description": "Encomendas de doces.",
     "benefit": "A cada 100 doces encomendados, recebe 6 unidades adicionais como cortesia.",
     "phone": "(45) 99811-7638",
@@ -186,7 +185,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "oficina3d",
     "name": "Oficina3D",
-    "category": "Presentes e Personalizados",
+    "category": "Moda, Beleza e Presentes",
     "description": "Impressão 3D e fabricação de projetos personalizados, incluindo brindes, peças técnicas, itens decorativos, peças religiosas, luminárias, brinquedos sensoriais, acessórios e protótipos.",
     "benefit": null,
     "phone": "(45) 99952-1189",
@@ -200,7 +199,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "jassiely-presentes",
     "name": "Jassiely Presentes",
-    "category": "Presentes",
+    "category": "Moda, Beleza e Presentes",
     "description": null,
     "benefit": "8% de desconto em toda a loja.",
     "phone": null,
@@ -214,7 +213,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "stalone-consorcio-araucaria",
     "name": "Stalone - Consórcio Araucária",
-    "category": "Financeiro",
+    "category": "Serviços Profissionais",
     "description": "Atendimento relacionado ao Consórcio Araucária.",
     "benefit": null,
     "phone": "(45) 99815-7773",
@@ -228,8 +227,8 @@ export const INITIAL_PARTNERS = [
   {
     "id": "femoveis",
     "name": "FEMOVEIS Móveis Planejados",
-    "category": "Casa e Construção",
-    "description": "Móveis planejados. Contato informado na arte: João Johann.",
+    "category": "Casa e Imóveis",
+    "description": "Móveis planejados.",
     "benefit": null,
     "phone": "(45) 99914-0071",
     "whatsapp": "5545999140071",
@@ -242,7 +241,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "contempla-consorcios",
     "name": "Contempla Consórcios",
-    "category": "Financeiro",
+    "category": "Serviços Profissionais",
     "description": "Soluções de consórcio para aquisição de veículos e planejamento de projetos familiares.",
     "benefit": "Desconto exclusivo na primeira parcela para pais de alunos do Colégio Adventista.",
     "phone": "(45) 99963-8463",
@@ -256,7 +255,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "vox-sign",
     "name": "VOX SIGN | Comunicação Visual",
-    "category": "Comunicação Visual",
+    "category": "Eventos e Comunicação",
     "description": "Fachadas em ACM, painéis luminosos, letras caixa, letras iluminadas, letras em PVC, adesivos, lonas, personalização de veículos e outras soluções de comunicação visual.",
     "benefit": "Descontos de 5% a 15%, conforme o produto ou serviço contratado, para pais e responsáveis por alunos do Colégio Adventista mediante comprovação.",
     "phone": "(45) 99117-6866",
@@ -270,7 +269,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "mi-medeiros-fotografia",
     "name": "Mi Medeiros Fotografia",
-    "category": "Fotografia",
+    "category": "Eventos e Comunicação",
     "description": "Fotografia de família, gestação, aniversários, casamentos, ensaios em estúdio ou ao ar livre e cobertura fotográfica de eventos.",
     "benefit": "20% OFF nos ensaios fotográficos para famílias com filhos matriculados no colégio.",
     "phone": "(45) 99902-5546",
@@ -284,7 +283,7 @@ export const INITIAL_PARTNERS = [
   {
     "id": "dentista-juliana-locatelli",
     "name": "Dra. Juliana Locatelli",
-    "category": "Saúde",
+    "category": "Saúde e Bem-estar",
     "description": "Atendimento odontológico.",
     "benefit": "15% de desconto nos tratamentos.",
     "phone": "(45) 99815-3303",
@@ -294,6 +293,160 @@ export const INITIAL_PARTNERS = [
     "website": null,
     "address": null,
     "logo": null
+  },
+  {
+    "id": "human-empreendimentos",
+    "name": "Human Empreendimentos",
+    "category": "Casa e Imóveis",
+    "description": "Especialista em incorporação imobiliária, A HUMAN transforma bons terrenos em grandes histórias urbanas. Integramos pesquisa de mercado, projeto, viabilidade, marketing e vendas para reduzir atritos e aumentar valor em cada etapa. ",
+    "benefit": "Desconto exclusivo para  as famílias do Colégio Adventista de Toledo.",
+    "phone": "(45) 99104-2188",
+    "whatsapp": "5545991042188",
+    "instagram": "@ferrariempreendimentos",
+    "instagramUrl": null,
+    "website": "https://souhuman.com.br/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAcGRvZgJzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAacY4YDIuBcEHBOHz0KYaYS-P3Hh0f-xBlCSBJCtqtl44VZEGC_ddIKoZyBwgA_aem_Tg3k8nSAsi5QrbZmeVoJlw",
+    "address": null,
+    "logo": "/partners/human-empreendimentos.jpg"
+  },
+  {
+    "id": "tr-parfum",
+    "name": "Tr Parfum",
+    "category": "Moda, Beleza e Presentes",
+    "description": "Loja de perfumaria e cosméticos.",
+    "benefit": null,
+    "phone": "(45) 99956-8087",
+    "whatsapp": "5545999568087",
+    "instagram": "@tr_parfum",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/tr-parfum.jpg"
+  },
+  {
+    "id": "remax",
+    "name": "Remax Tettra",
+    "category": "Casa e Imóveis",
+    "description": "Mais que imovéis, realizo sonhos! Conte com um corretor comprometido, que entende sua necessidades e trabalha para encontrar o imóvel ideal para você e sua familia.",
+    "benefit": null,
+    "phone": "(11) 99323-4768",
+    "whatsapp": "5545'999568087",
+    "instagram": "@remaxtettraimoveis",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/tr-parfum.jpg"
+  },
+  {
+    "id": "filipin-odontologia",
+    "name": "Filipin Odontologia",
+    "category": "Saúde e Bem-estar",
+    "description": "Especialistas em Endodontia, Estética Dental Ortodontdia e Harmonização Facial",
+    "benefit": null,
+    "phone": "(45) 9927-9177",
+    "whatsapp": "554599279177",
+    "instagram": "@filipinodonto",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/tr-parfum.jpg"
+  },
+  {
+    "id": "bcb-barcos",
+    "name": "BCB Barcos",
+    "category": "Mobilidade e Automotivo",
+    "description": "Vendemos barcos, carretas, motores e lanchas, além de serviços de arrais e documentação.",
+    "benefit": null,
+    "phone": "(45) 9927-9177",
+    "whatsapp": "554599279177",
+    "instagram": "@bcbbarcos",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/bcb-barcos.jpg"
+  },
+  {
+    "id": "real-portas",
+    "name": "Real Portas",
+    "category": "Casa e Imóveis",
+    "description": "Loja especializada em Portas e Pisos laminados.",
+    "benefit": "7% DE DESCONTO NOS PRODUTOS PARA PAIS DE ALUNOS DO COLÉGIO ADVENTISTA DE TOLEDO.",
+    "phone": "(45) 998114518",
+    "whatsapp": "5545998114518",
+    "instagram": "@realportasepisoslaminados",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/real-portas.jpg"
+  },
+  {
+    "id": "parana-pack",
+    "name": "Parana Pack",
+    "category": "Serviços Profissionais",
+    "description": "Embalagens personalizadas para a sua necessidade.",
+    "benefit": "10% DE DESCONTO NOS PRODUTOS PARA PAIS E COLABORADORES DO COLÉGIO ADVENTISTA DE TOLEDO.",
+    "phone": "(45) 998114518",
+    "whatsapp": "5545998114518",
+    "instagram": "@realportasepisoslaminados",
+    "instagramUrl": null,
+    "website": "https://www.paranapack.com.br/quem-somos/",
+    "address": null,
+    "logo": "/partners/real-portas.jpg"
+  },
+  {
+    "id": "jck-colchoes",
+    "name": "JCK Colchões",
+    "category": "Casa e Imóveis",
+    "description": "colchões e produtos terapêuticos",
+    "benefit": null,
+    "phone": "(45) 999140071",
+    "whatsapp": "5545999140071",
+    "instagram": null,
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/jck-colchoes.jpg"
+  },
+  {
+    "id": "thibes-e-rubert",
+    "name": "Thibes E Rubert Odontologia",
+    "category": "Saúde e Bem-estar",
+    "description": "Odontopediatria, Clínico Geral, Implantodontia, Endodontia, Ortodontia, Estética Dental",
+    "benefit": "15% de desconto nos tratamentos para alunos, colaboradores e seus familiares",
+    "phone": "(45) 999266391",
+    "whatsapp": "5545999266391",
+    "instagram": "@thibeserubertodontologia",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/thibes-e-rubert.jpg"
+  },
+  {
+    "id": "saude-em-movimento",
+    "name": "Saúde em Movimento",
+    "category": "Saúde e Bem-estar",
+    "description": "Treino Personalizado para resultados reais e duradouros",
+    "benefit": "Benefícios , indique 1 amigo e ganhe uma avaliação física grátis e 10% na primeira mensalidade",
+    "phone": "(45) 99932-4546",
+    "whatsapp": "5545999324546",
+    "instagram": "@saude.em.movimento_pr",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/saude-em-movimento.jpg"
+  },
+  {
+    "id": "chiella-e-sathler",
+    "name": "Chiella E Sathler",
+    "category": "Saúde e Bem-estar",
+    "description": "Massoterapia e terapias integrativas",
+    "benefit": "Benefício exclusivo famílias CAT, 10% OFF na primeira sessão e Condições especiais em pacotes mensais e plano família",
+    "phone": "(45) 99967-7695",
+    "whatsapp": "5545999677695",
+    "instagram": "@chiellaesathler",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/chiella-e-sathler.jpg"
   }
 ]
 ;

@@ -1,13 +1,13 @@
 import React from 'react';
-import { GraduationCap, PlusCircle, Menu, X, Sparkles, Tag } from 'lucide-react';
+import { GraduationCap, Menu, X, Sun, Moon } from 'lucide-react';
 
 
 export const Navbar= ({
-  onOpenRegister,
-  onOpenClube,
   onScrollToHowItWorks,
   onScrollToHome,
   totalPartnersCount,
+  isLightMode,
+  onToggleTheme,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
@@ -24,7 +24,7 @@ export const Navbar= ({
             <GraduationCap className="h-6 w-6 transition-transform group-hover:scale-105" />
           </div>
           <div>
-            <div className="flex items-center gap-1.5 font-black tracking-tight text-white text-lg leading-none">
+            <div className="flex items-center gap-1.5   font-black tracking-tight text-white text-lg leading-none">
               COLÉGIO <span className="text-sky-600">ADVENTISTA DE TOLEDO</span>
             </div>
             <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mt-1">
@@ -39,8 +39,20 @@ export const Navbar= ({
         </nav>
 
         {/* Action Button */}
-        <div className="hidden md:flex items-center gap-4">
-          
+        <div className="flex items-center gap-2 md:gap-4">
+          <button
+            id="nav-theme-toggle-btn"
+            type="button"
+            onClick={onToggleTheme}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-sky-600/30 bg-sky-600/10 text-sky-600 transition-colors hover:bg-sky-600 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-sky-600/50"
+            aria-label={isLightMode ? 'Ativar modo escuro' : 'Ativar modo claro'}
+            title={isLightMode ? 'Ativar modo escuro' : 'Ativar modo claro'}
+          >
+            {isLightMode ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+          </button>
+
+          <div className="hidden md:flex items-center gap-4">
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -78,25 +90,8 @@ export const Navbar= ({
             >
               Como Funciona
             </button>
-            <button
-              onClick={() => {
-                onOpenClube();
-                setMobileMenuOpen(false);
-              }}
-              className="text-left px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800/60 rounded-md flex items-center justify-between"
-            >
-              <span>Clube de Vantagens</span>
-              <span className="text-xs bg-sky-600/20 text-sky-600 px-2 py-0.5 rounded">Ativo</span>
-            </button>
-            <button
-              onClick={() => {
-                onOpenRegister();
-                setMobileMenuOpen(false);
-              }}
-              className="w-full mt-2 rounded-lg bg-sky-600 py-3 text-center text-xs font-bold uppercase tracking-wider text-slate-950 hover:bg-sky-600"
-            >
-              Cadastrar Empresa
-            </button>
+            
+
           </div>
         </div>
       )}

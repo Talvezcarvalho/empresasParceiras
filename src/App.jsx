@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Info, SearchX } from 'lucide-react';
+import { SearchX } from 'lucide-react';
 
 import { INITIAL_PARTNERS } from './data/initialPartners';
 
@@ -8,7 +8,6 @@ import { HeroSection } from './components/HeroSection';
 import { CategoryFilterBar } from './components/CategoryFilterBar';
 import { PartnerCard } from './components/PartnerCard';
 import { PartnerDetailModal } from './components/PartnerDetailModal';
-import { RegisterModal } from './components/RegisterModal';
 import { Footer } from './components/Footer';
 
 
@@ -30,6 +29,14 @@ function hashData(data) {
 }
 
 export default function App() {
+  const [isLightMode, setIsLightMode] = useState(() => {
+    try {
+      return localStorage.getItem('sigma_partners_theme') === 'light';
+    } catch {
+      return false;
+    }
+  });
+
   const [partners, setPartners] = useState(() => {
     try {
       const currentHash = hashData(INITIAL_PARTNERS);
@@ -55,13 +62,22 @@ export default function App() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('TODOS');
-  const [showImagesDirectly, setShowImagesDirectly] = useState(false);
-  const [onlyClubeVantagens, setOnlyClubeVantagens] = useState(false);
 
   // Modals state
   const [selectedPartner, setSelectedPartner] = useState(null);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isClubeModalOpen, setIsClubeModalOpen] = useState(false);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        'sigma_partners_theme',
+        isLightMode ? 'light' : 'dark'
+      );
+    } catch (e) {
+      console.warn('Erro ao persistir tema:', e);
+    }
+  }, [isLightMode]);
 
   // Sync to local storage — grava o hash atual do initialPartners.js
   // junto, pra próxima visita saber se o arquivo mudou.
@@ -80,6 +96,18 @@ export default function App() {
     }
   }, [partners]);
 
+  // Categorias derivadas dos dados reais (não mais uma lista fixa em
+  // outro lugar) — "TODOS" primeiro, depois as categorias que de fato
+  // existem em initialPartners.js, em ordem alfabética. É isso que o
+  // CategoryFilterBar deveria usar pra montar os botões de filtro.
+  const categories = useMemo(() => {
+    const unique = Array.from(
+      new Set(partners.map((p) => p.category).filter(Boolean))
+    ).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+    return ['TODOS', ...unique];
+  }, [partners]);
+
   // Filter partners
   const filteredPartners = useMemo(() => {
     return partners.filter((p) => {
@@ -88,11 +116,6 @@ export default function App() {
         selectedCategory !== 'TODOS' &&
         p.category !== selectedCategory
       ) {
-        return false;
-      }
-
-      // "Clube de Vantagens" agora = parceiro tem algum benefício/desconto
-      if (onlyClubeVantagens && !p.benefit) {
         return false;
       }
 
@@ -133,7 +156,6 @@ export default function App() {
   }, [
     partners,
     selectedCategory,
-    onlyClubeVantagens,
     searchQuery
   ]);
 
@@ -158,7 +180,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0f141e] text-slate-100 selection:bg-sky-600 selection:text-slate-950">
+    <div
+      className={`app-shell min-h-screen flex flex-col bg-[#f5f8fc] text-[#172033] dark:bg-[#0f141e] dark:text-slate-100 selection:bg-sky-600 selection:text-slate-950 ${
+        isLightMode ? '' : 'dark'
+      }`}
+    >
 
       {/* Top Navigation Bar */}
       <Navbar
@@ -167,6 +193,8 @@ export default function App() {
         onScrollToHowItWorks={scrollToHowItWorks}
         onScrollToHome={scrollToHome}
         totalPartnersCount={partners.length}
+        isLightMode={isLightMode}
+        onToggleTheme={() => setIsLightMode((previous) => !previous)}
       />
 
       {/* Main Content Area */}
@@ -185,48 +213,14 @@ export default function App() {
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16"
         >
 
-          {/* Category Filter & Options Bar */}
+          {/* Category Filter Bar — só filtro de categoria agora, sem
+              toggle de clube/benefícios nem "mostrar imagens" */}
           <CategoryFilterBar
+            categories={categories}
             selectedCategory={selectedCategory}
             onSelectCategory={setSelectedCategory}
             filteredCount={filteredPartners.length}
-            showImagesDirectly={showImagesDirectly}
-            onToggleShowImages={() =>
-              setShowImagesDirectly((prev) => !prev)
-            }
-            onlyClubeVantagens={onlyClubeVantagens}
-            onToggleOnlyClube={() =>
-              setOnlyClubeVantagens((prev) => !prev)
-            }
           />
-
-          {/* HTML Image Direct Links Tip Notification */}
-          {showImagesDirectly && (
-            <div className="mb-6 rounded-xl border border-sky-600/30 bg-sky-600/10 p-4 flex items-center justify-between gap-3 text-xs sm:text-sm text-sky-600">
-
-              <div className="flex items-center gap-2.5">
-                <Info className="h-4 w-4 text-sky-600 shrink-0" />
-
-                <span>
-                  <strong>
-                    Modo Imagens HTML Diretas Ativado:
-                  </strong>{' '}
-                  As fotos de divulgação de cada parceiro agora aparecem
-                  ao abrir os detalhes do card.
-                </span>
-              </div>
-
-              <button
-                onClick={() =>
-                  setShowImagesDirectly(false)
-                }
-                className="text-xs underline hover:text-white shrink-0 cursor-pointer"
-              >
-                Ocultar
-              </button>
-
-            </div>
-          )}
 
           {/* Partners Grid */}
           {filteredPartners.length > 0 ? (
@@ -248,17 +242,17 @@ export default function App() {
           ) : (
 
             /* Empty state when no partners match filter */
-            <div className="rounded-2xl border border-[#212b40] bg-[#121827] p-12 text-center my-8">
+            <div className="rounded-2xl border border-[#d6e0ec] dark:border-[#212b40] bg-white dark:bg-[#121827] p-12 text-center my-8">
 
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-800 text-slate-400 mb-4">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 mb-4">
                 <SearchX className="h-7 w-7" />
               </div>
 
-              <h3 className="text-lg font-bold text-white mb-2">
+              <h3 className="text-lg font-bold text-[#172033] dark:text-white mb-2">
                 Nenhum parceiro encontrado
               </h3>
 
-              <p className="text-slate-400 text-sm max-w-md mx-auto mb-6">
+              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-md mx-auto mb-6">
                 Não encontramos nenhum estabelecimento com o
                 termo &quot;{searchQuery}&quot; na categoria selecionada.
               </p>
@@ -269,9 +263,8 @@ export default function App() {
                   onClick={() => {
                     setSearchQuery('');
                     setSelectedCategory('TODOS');
-                    setOnlyClubeVantagens(false);
                   }}
-                  className="rounded-lg bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700"
+                  className="rounded-lg bg-slate-100 dark:bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700"
                 >
                   Limpar todos os filtros
                 </button>
@@ -280,7 +273,7 @@ export default function App() {
                   onClick={() =>
                     setIsRegisterOpen(true)
                   }
-                  className="rounded-lg bg-sky-600 px-4 py-2 text-xs font-bold text-slate-950 hover:bg-sky-600"
+                  className="rounded-lg bg-sky-600 px-4 py-2 text-xs font-bold text-slate-950 hover:bg-sky-700"
                 >
                   Cadastrar minha empresa
                 </button>

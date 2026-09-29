@@ -28,7 +28,7 @@ export const HeroSection = ({
   const titleLines = ["Benefícios que", "aproximam", "nossa comunidade."];
 
   return (
-    <section className="relative min-h-[720px] lg:min-h-[760px] overflow-hidden bg-slate-950 text-white">
+    <section className="hero-section relative min-h-[720px] lg:min-h-[760px] overflow-hidden bg-slate-950 text-white">
       {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center scale-[1.02]"
