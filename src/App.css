@@ -77,8 +77,66 @@ body {
     color: #fefeff;
 }
 
+.app-shell:not(.dark) [class~="text-hero"] {
+    color: #fefeff;
+}
 
 
+/* Navbar permanece sempre no tema escuro */
+.navbar-static {
+.navbar-static {
+  background-color: #0f141e !important;
+  border-color: #1e2638 !important;
+  color: #ffffff !important;
+}
+}
+
+/* Texto */
+.navbar-static [class~="text-white"] {
+  color: #ffffff !important;
+}
+
+.navbar-static [class~="text-slate-100"] {
+  color: #f1f5f9 !important;
+}
+
+.navbar-static [class~="text-slate-200"] {
+  color: #e2e8f0 !important;
+}
+
+.navbar-static [class~="text-slate-300"] {
+  color: #cbd5e1 !important;
+}
+
+.navbar-static [class~="text-slate-400"] {
+  color: #94a3b8 !important;
+}
+
+.navbar-static [class~="text-slate-500"] {
+  color: #64748b !important;
+}
+
+/* Dropdown mobile */
+.navbar-static [class~="bg-[#121826]"] {
+  background-color: #121826 !important;
+}
+
+.navbar-static [class~="border-[#1e2638]"] {
+  border-color: #1e2638 !important;
+}
+
+/* Hovers que sua ponte de light mode sobrescreve */
+.navbar-static [class~="hover:bg-slate-800"]:hover {
+  background-color: #1e293b !important;
+}
+
+.navbar-static [class~="hover:bg-slate-800/60"]:hover {
+  background-color: rgba(30, 41, 59, 0.6) !important;
+}
+
+.app-shell .navbar-static .navbar-college-title {
+  color: #ffffff !important;
+}
 /* A HeroSection NÃO precisa de nada aqui: ela usa cor fixa (bg-slate-950,
    texto branco) sem nenhuma classe dark:, então continua sempre escura
    nos dois temas — que é o efeito visual que o hack antigo tentava forçar

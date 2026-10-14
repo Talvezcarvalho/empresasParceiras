@@ -12,7 +12,12 @@ export const Navbar= ({
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#1e2638] bg-[#0f141e]/90 backdrop-blur-md">
+    <header className="
+    navbar-static
+    sticky top-0 z-40 w-full
+    border-b border-[#1e2638]
+  bg-[#0f141e]
+  ">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <button
@@ -24,7 +29,7 @@ export const Navbar= ({
             <GraduationCap className="h-6 w-6 transition-transform group-hover:scale-105" />
           </div>
           <div>
-            <div className="flex items-center gap-1.5   font-black tracking-tight text-white text-lg leading-none">
+            <div className="navbar-college-title flex items-center gap-1.5   font-black tracking-tight text-lg leading-none">
               COLÉGIO <span className="text-sky-600">ADVENTISTA DE TOLEDO</span>
             </div>
             <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mt-1">
@@ -44,11 +49,13 @@ export const Navbar= ({
             id="nav-theme-toggle-btn"
             type="button"
             onClick={onToggleTheme}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-sky-600/30 bg-sky-600/10 text-sky-600 transition-colors hover:bg-sky-600 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-sky-600/50"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-sky-600/30 bg-sky-600/10 px-3 text-sky-600 transition-colors hover:bg-sky-600 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-sky-600/50"
+            aria-pressed={isLightMode}
             aria-label={isLightMode ? 'Ativar modo escuro' : 'Ativar modo claro'}
             title={isLightMode ? 'Ativar modo escuro' : 'Ativar modo claro'}
           >
-            {isLightMode ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            {isLightMode ? <Moon aria-hidden="true" className="h-5 w-5" /> : <Sun aria-hidden="true" className="h-5 w-5" />}
+            <span className="hidden sm:inline">{isLightMode ? 'Modo escuro' : 'Modo claro'}</span>
           </button>
 
           <div className="hidden md:flex items-center gap-4">

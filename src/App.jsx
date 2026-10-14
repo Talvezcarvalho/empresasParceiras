@@ -9,6 +9,7 @@ import { CategoryFilterBar } from './components/CategoryFilterBar';
 import { PartnerCard } from './components/PartnerCard';
 import { PartnerDetailModal } from './components/PartnerDetailModal';
 import { Footer } from './components/Footer';
+import { RegisterModal } from './components/RegisterModal';
 
 
 const STORAGE_KEY = 'sigma_partners_data_v2';
@@ -62,11 +63,10 @@ export default function App() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('TODOS');
-
   // Modals state
   const [selectedPartner, setSelectedPartner] = useState(null);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const [isClubeModalOpen, setIsClubeModalOpen] = useState(false);
+  
 
   useEffect(() => {
     try {
@@ -294,17 +294,18 @@ export default function App() {
 
       {/* Footer */}
       <Footer
-        onOpenRegister={() =>
+        onOpenRegisterModal={() =>
           setIsRegisterOpen(true)
         }
-        onOpenClube={() =>
-          setIsClubeModalOpen(true)
-        }
+        
         onScrollToHowItWorks={
           scrollToHowItWorks
         }
       />
-
+      <RegisterModal
+        isOpen={isRegisterOpen}
+          onClose={() => setIsRegisterOpen(false)}
+      />
 
     </div>
   );

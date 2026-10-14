@@ -253,7 +253,7 @@ export const INITIAL_PARTNERS = [
     "logo": null
   },
   {
-    "id": "vox-sign",
+    "id": "vox",
     "name": "VOX SIGN | Comunicação Visual",
     "category": "Eventos e Comunicação",
     "description": "Fachadas em ACM, painéis luminosos, letras caixa, letras iluminadas, letras em PVC, adesivos, lonas, personalização de veículos e outras soluções de comunicação visual.",
@@ -264,7 +264,7 @@ export const INITIAL_PARTNERS = [
     "instagramUrl": null,
     "website": null,
     "address": null,
-    "logo": "/partners/vox-sign.jpg"
+    "logo": "/partners/vox.jpg"
   },
   {
     "id": "mi-medeiros-fotografia",
@@ -447,6 +447,20 @@ export const INITIAL_PARTNERS = [
     "website": null,
     "address": null,
     "logo": "/partners/chiella-e-sathler.jpg"
+  },
+   {
+    "id": "barbearia-brooklyn",
+    "name": "Barbearia Brooklyn",
+    "category": "Saúde e Bem-estar",
+    "description": "Corte de cabelo e barba",
+    "benefit": null,
+    "phone": "(45) 99967-7695",
+    "whatsapp": "5545999677695",
+    "instagram": "@brooklynbarbeariatoo",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/barbearia-brooklyn.jpg"
   }
 ]
 ;

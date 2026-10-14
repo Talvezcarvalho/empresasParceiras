@@ -4,7 +4,7 @@ import { ArrowRight, GraduationCap } from 'lucide-react';
 
 
 export const Footer = ({
-  onOpenRegister,
+  onOpenRegisterModal,
   onOpenClube,
   onScrollToHowItWorks,
 }) => {
@@ -15,31 +15,20 @@ export const Footer = ({
           {/* Left: Branding */}
           <div className="flex items-center gap-3">
             <span className="font-extrabold tracking-tight text-white text-sm">
-              COLÉGIO SIGMA
+              COLÉGIO ADVENTISTA DE TOLEDO
             </span>
             <span className="text-slate-400">•</span>
             <span className="text-slate-400">
-              Rede de Parceiros © 2025
+              Rede de Parceiros © 2026
             </span>
           </div>
 
           {/* Right: Links */}
           <div className="flex flex-wrap items-center gap-6 font-medium">
-            <button
-              onClick={onScrollToHowItWorks}
-              className="hover:text-sky-600 transition-colors cursor-pointer"
-            >
-              Como Funciona
-            </button>
-            <button
-              onClick={onOpenClube}
-              className="hover:text-sky-600 transition-colors cursor-pointer"
-            >
-              Clube de Vantagens
-            </button>
+            
             <button
               id="footer-cadastrar-link"
-              onClick={onOpenRegister}
+              onClick={onOpenRegisterModal}
               className="inline-flex items-center gap-1 font-bold text-sky-600 hover:text-sky-600 transition-colors cursor-pointer"
             >
               <span>Cadastrar Minha Empresa</span>

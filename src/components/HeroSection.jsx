@@ -53,7 +53,7 @@ export const HeroSection = ({
           <div className="lg:col-span-7">
             {/* Badge */}
             <div
-              className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium text-white/90 backdrop-blur-md"
+              className="text-hero mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium text-white/90! backdrop-blur-md "
               style={{
                 opacity: ready ? 1 : 0,
                 transform: ready
