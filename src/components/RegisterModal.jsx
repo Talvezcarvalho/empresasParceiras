@@ -350,7 +350,7 @@ export const RegisterModal = ({
                       dark:text-white
                     "
                   >
-                    @seuinstagram
+                    @colegioadventistadetoledo
                   </strong>
                 </div>
               </a>
