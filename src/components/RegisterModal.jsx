@@ -8,6 +8,7 @@ import {
   Users,
   Building2,
 } from 'lucide-react';
+import { InstagramIcon } from './InstagramIcon';
 
 export const RegisterModal = ({
   isOpen,
@@ -328,6 +329,7 @@ export const RegisterModal = ({
                     text-sky-600
                   "
                 >
+                  <InstagramIcon className="h-5 w-5" />
                 </div>
 
                 <div className="min-w-0">
@@ -338,6 +340,7 @@ export const RegisterModal = ({
                       text-slate-500
                     "
                   >
+                    Instagram
                   </span>
 
                   <strong

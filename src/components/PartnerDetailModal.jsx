@@ -8,6 +8,7 @@ import {
   MapPin,
   Building2,
 } from 'lucide-react';
+import { InstagramIcon } from './InstagramIcon';
 
 // Imagem de divulgação do modal — DIFERENTE da logo do card.
 // Convenção: /partners/media/{id}.jpg
@@ -97,6 +98,19 @@ export const PartnerDetailModal = ({ partner, onClose }) => {
     ? `https://wa.me/${partner.whatsapp}`
     : null;
 
+  // Instagram: usa a URL completa se existir; senão monta a partir do @
+  const instagramHandle = partner.instagram?.trim() || null;
+  const instagramHref =
+    partner.instagramUrl ||
+    (instagramHandle
+      ? `https://www.instagram.com/${instagramHandle.replace(/^@/, '')}/`
+      : null);
+  const instagramLabel =
+    instagramHandle ||
+    (partner.instagramUrl
+      ? '@' + (partner.instagramUrl.match(/instagram\.com\/([^/?#]+)/)?.[1] ?? 'instagram')
+      : null);
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -162,6 +176,14 @@ export const PartnerDetailModal = ({ partner, onClose }) => {
               {whatsappHref ? (
                 <a href={whatsappHref} target="_blank" rel="noreferrer" className="hover:text-sky-600">
                   {partner.phone || 'Abrir conversa'}
+                </a>
+              ) : null}
+            </ContactRow>
+
+            <ContactRow icon={InstagramIcon} label="Instagram">
+              {instagramHref ? (
+                <a href={instagramHref} target="_blank" rel="noreferrer" className="hover:text-sky-600 break-all">
+                  {instagramLabel}
                 </a>
               ) : null}
             </ContactRow>
