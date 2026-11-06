@@ -4,9 +4,8 @@ import { ArrowRight, GraduationCap } from 'lucide-react';
 
 
 export const Footer = ({
+  onOpenSuportModal,
   onOpenRegisterModal,
-  onOpenClube,
-  onScrollToHowItWorks,
 }) => {
   return (
     <footer className="border-t border-[#1a2335] bg-[#0c1018] py-8 text-xs text-slate-400">
@@ -23,9 +22,24 @@ export const Footer = ({
             </span>
           </div>
 
+
+         
           {/* Right: Links */}
+
+            
+            
           <div className="flex flex-wrap items-center gap-6 font-medium">
             
+              <button
+              id="footer-contato-suporte"
+              onClick={onOpenSuportModal}
+              className="inline-flex items-center gap-1 font-bold text-sky-600 hover:text-sky-600 transition-colors cursor-pointer"
+            >
+              <span>Sugestões ou duvidas</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </button>
+
+
             <button
               id="footer-cadastrar-link"
               onClick={onOpenRegisterModal}

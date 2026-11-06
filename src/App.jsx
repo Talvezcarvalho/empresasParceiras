@@ -10,6 +10,7 @@ import { PartnerCard } from './components/PartnerCard';
 import { PartnerDetailModal } from './components/PartnerDetailModal';
 import { Footer } from './components/Footer';
 import { RegisterModal } from './components/RegisterModal';
+import { SupportModal } from './components/Suportmodal';
 
 
 const STORAGE_KEY = 'sigma_partners_data_v2';
@@ -66,6 +67,7 @@ export default function App() {
   // Modals state
   const [selectedPartner, setSelectedPartner] = useState(null);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
   
 
   useEffect(() => {
@@ -297,6 +299,10 @@ export default function App() {
         onOpenRegisterModal={() =>
           setIsRegisterOpen(true)
         }
+
+        onOpenSuportModal={() =>
+          setIsSupportModalOpen(true)
+        }
         
         onScrollToHowItWorks={
           scrollToHowItWorks
@@ -305,6 +311,11 @@ export default function App() {
       <RegisterModal
         isOpen={isRegisterOpen}
           onClose={() => setIsRegisterOpen(false)}
+      />
+
+      <SupportModal
+        isOpen={isSupportModalOpen}
+        onClose={() => setIsSupportModalOpen(false)}
       />
 
     </div>
