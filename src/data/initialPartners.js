@@ -324,17 +324,17 @@ export const INITIAL_PARTNERS = [
   },
   {
     "id": "remax",
-    "name": "Remax Tettra",
+    "name": "Denis Corretor",
     "category": "Casa e Imóveis",
     "description": "Mais que imovéis, realizo sonhos! Conte com um corretor comprometido, que entende sua necessidades e trabalha para encontrar o imóvel ideal para você e sua familia.",
     "benefit": null,
-    "phone": "(11) 99323-4768",
-    "whatsapp": "5545'999568087",
-    "instagram": "@remaxtettraimoveis",
+    "phone": "(45) 998105447",
+    "whatsapp": "5545998105447",
+    "instagram": "@denisbezerracorretor",
     "instagramUrl": null,
     "website": null,
     "address": null,
-    "logo": "/partners/tr-parfum.jpg"
+    "logo": "/partners/remax.jpg"
   },
   {
     "id": "filipin-odontologia",
@@ -462,5 +462,63 @@ export const INITIAL_PARTNERS = [
     "address": null,
     "logo": "/partners/barbearia-brooklyn.jpg"
   }
+  ,
+   {
+    "id": "H&J-Media",
+    "name": "H&J Media",
+    "category": "Eventos e Comunicação",
+    "description": "A H&J Media é uma agência de social media e produção audiovisual. Criamos conteúdo para marcas e registramos eventos, apresentações e momentos especiais com captação e edição de qualidade, sempre com atendimento próximo e cuidado em cada detalhe.",
+    "benefit": "10% de Desconto para pais e alunos do colégio",
+    "phone": "(45) 99126-9207",
+    "whatsapp": " 5545991269207",
+    "instagram": null,
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/H&J-Media.jpg"
+  }
+   ,
+   {
+    "id": "WRD-Abrasivos",
+    "name": "WRD Abrasivos",
+    "category": "Serviços Profissionais",
+    "description": "Abrasivos, soldas e ferramentas para processos produtivos mais eficientes.",
+    "benefit": null,
+    "phone": "(45) 99126-9207",
+    "whatsapp": " 5545991269207",
+    "instagram": "@wrd0424",
+    "instagramUrl": "https://www.instagram.com/wrd0424?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==",
+    "website": "https://wrdabrasivos.com.br/",
+    "address": null,
+    "logo": "/partners/WRD-Abrasivos.jpg"
+  } ,
+   {
+    "id": "Casa-cor-tintas-toledo",
+    "name": "Casa Cor Tintas Toledo",
+    "category": " Serviços Profissionais",
+    "description": "Oferecemos mais cores para a sua vida e mais qualidade nas suas escolhas",
+    "benefit": "5% de cashback para pais e colaboradores do colégio",
+    "phone": "(45) 9908-9555",
+    "whatsapp": "554599089555",
+    "instagram": "@casacortintastoledo0424",
+    "instagramUrl": "https://www.instagram.com/casacortintastoledo?stkn=bTBlcGpqMXhtbHc4",
+    "website": null,
+    "address": null,
+    "logo": "/partners/Casa-cor-tintas-toledo.jpg"
+  },
+  {
+  "id": "essenza",
+  "name": "Essenza Água Vida",
+  "category": "Purificadores de Água",
+  "description": "Sua água pode ser ainda melhor! A Essenza Água Vida oferece purificadores de água com tecnologia de ozônio, proporcionando mais pureza, praticidade e qualidade para o seu dia a dia.",
+  "benefit": "Purificadores com tecnologia de ozônio, que auxilia na eliminação de bactérias, vírus e impurezas, proporcionando água mais segura e saudável.",
+  "phone": "(45) 99914-0071",
+  "whatsapp": "5545999140071",
+  "instagram": null,
+  "instagramUrl": null,
+  "website": null,
+  "address": null,
+  "logo": "/partners/essenza.jpg"
+}
 ]
 ;
