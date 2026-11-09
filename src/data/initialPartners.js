@@ -295,6 +295,20 @@ export const INITIAL_PARTNERS = [
     "logo": null
   },
   {
+    "id": "nail-design",
+    "name": "Nail Design",
+    "category": "Serviços Profissionais",
+    "description": "Esmaltação em gel, blindagem, Spa dos pés",
+    "benefit": null,
+    "phone": "(45) 99946-7101",
+    "whatsapp": "5545999467101",
+    "instagram": "@alicebloemer_nails",
+    "instagramUrl": "https://www.instagram.com/alicebloemer_nails?cplk=amg0dnNuaHV4cjNu&utm_source=qr",
+    "website": null,
+    "address": null,
+    "logo": "/partners/nail-design.jpg"
+  },
+  {
     "id": "human-empreendimentos",
     "name": "Human Empreendimentos",
     "category": "Casa e Imóveis",
@@ -384,10 +398,10 @@ export const INITIAL_PARTNERS = [
     "category": "Serviços Profissionais",
     "description": "Embalagens personalizadas para a sua necessidade.",
     "benefit": "10% DE DESCONTO NOS PRODUTOS PARA PAIS E COLABORADORES DO COLÉGIO ADVENTISTA DE TOLEDO.",
-    "phone": "(45) 998114518",
-    "whatsapp": "5545998114518",
-    "instagram": "@realportasepisoslaminados",
-    "instagramUrl": null,
+    "phone": "(45) 99136-6440",
+    "whatsapp": "5545991364440",
+    "instagram": "@parana_pack",
+    "instagramUrl": "https://www.instagram.com/parana_pack?vrfl=MXU4dWVmZ3c2eXIzag%3D%3D&utm_source=qr",
     "website": "https://www.paranapack.com.br/quem-somos/",
     "address": null,
     "logo": "/partners/real-portas.jpg"
