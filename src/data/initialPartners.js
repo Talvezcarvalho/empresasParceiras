@@ -371,7 +371,7 @@ export const INITIAL_PARTNERS = [
     "description": "Mesmo quando seu pet parece saudável, mantenha as consultas com o veterinário em dia. Nessas visitas o profissional acompanha a sáude do animal, orienta sobre vacinas e pode identificar alterações ates que elas se agravem",
     "benefit": null,
     "phone": "(45) 9993-6444",
-    "whatsapp": "554599936444",
+    "whatsapp": "554599135-3738",
     "instagram": "@CLINICASCHERER",
     "instagramUrl": "https://www.instagram.com/clinicascherer/",
     "website": null,
@@ -398,13 +398,13 @@ export const INITIAL_PARTNERS = [
     "category": "Mobilidade e Automotivo",
     "description": "Mobilidade para todos os momentos",
     "benefit": null,
-    "phone": "(45) 98822-1373",
-    "whatsapp": "55459988221373",
-    "instagram": "@possomais.toledo",
-    "instagramUrl": "https://www.instagram.com/possomais.toledo/",
+    "phone": "(11) 953342813",
+    "whatsapp": "5511953342813",
+    "instagram": "@garagemdeletricos",
+    "instagramUrl": "https://www.instagram.com/garagemdeletricos/",
     "website": null,
     "address": null,
-    "logo": "/partners/posso-mais.jpg"
+    "logo": "/partners/garagem-eletricos.jpg"
   },
   {
     "id": "filipin-odontologia",
