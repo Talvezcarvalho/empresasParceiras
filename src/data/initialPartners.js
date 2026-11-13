@@ -336,6 +336,20 @@ export const INITIAL_PARTNERS = [
     "address": null,
     "logo": "/partners/tr-parfum.jpg"
   },
+    {
+    "id": "sheila-pereira",
+    "name": "Sheila Pereira Psicopedagoga",
+    "category": "Saúde e Bem-estar",
+    "description": "🧠 Avaliação e Intervenção Psicopedagógica📍 Transtornos do Neuro desenvolvimento e Dificuldades Específicas de AprendizagemCrianças, adolescentes e adultos",
+    "benefit": "Desconto especiais para alunos do CAT",
+    "phone": "(45) 99847-8976",
+    "whatsapp": "5545998478976",
+    "instagram": "@sheilapereira.psicopedagoga",
+    "instagramUrl": null,
+    "website": null,
+    "address": null,
+    "logo": "/partners/sheila-pereira.jpg"
+  },
   {
     "id": "remax",
     "name": "Denis Corretor",
@@ -349,6 +363,48 @@ export const INITIAL_PARTNERS = [
     "website": null,
     "address": null,
     "logo": "/partners/remax.jpg"
+  },
+  {
+    "id": "scherer",
+    "name": "Clinica Veterinária Scherer",
+    "category": " Saúde e Bem-estar",
+    "description": "Mesmo quando seu pet parece saudável, mantenha as consultas com o veterinário em dia. Nessas visitas o profissional acompanha a sáude do animal, orienta sobre vacinas e pode identificar alterações ates que elas se agravem",
+    "benefit": null,
+    "phone": "(45) 9993-6444",
+    "whatsapp": "554599936444",
+    "instagram": "@CLINICASCHERER",
+    "instagramUrl": "https://www.instagram.com/clinicascherer/",
+    "website": null,
+    "address": null,
+    "logo": "/partners/scherer.jpg"
+  },
+  {
+    "id": "posso-mais",
+    "name": "Posso Mais – Centro de Desenvolvimento",
+    "category": " Saúde e Bem-estar",
+    "description": "Somos um centro de desenvolvimento infantil e educacional que oferece experiências e atividades voltadas à aprendizagem, ao desenvolvimento integral e à autonomia das crianças.Nossos serviços:  Apoio escolar e aulas particulares Curso de Matemática; Alfabetização; Recreação infantil; Funcional Kids e Baby; Psicomotricidade; Cursos de Inglês – Phenom Idiomas.",
+    "benefit": null,
+    "phone": "(45) 98822-1373",
+    "whatsapp": "55459988221373",
+    "instagram": "@possomais.toledo",
+    "instagramUrl": "https://www.instagram.com/possomais.toledo/",
+    "website": null,
+    "address": null,
+    "logo": "/partners/posso-mais.jpg"
+  },
+  {
+    "id": "garagem-eletricos",
+    "name": "Garagem dos Elétricos",
+    "category": "Mobilidade e Automotivo",
+    "description": "Mobilidade para todos os momentos",
+    "benefit": null,
+    "phone": "(45) 98822-1373",
+    "whatsapp": "55459988221373",
+    "instagram": "@possomais.toledo",
+    "instagramUrl": "https://www.instagram.com/possomais.toledo/",
+    "website": null,
+    "address": null,
+    "logo": "/partners/posso-mais.jpg"
   },
   {
     "id": "filipin-odontologia",
